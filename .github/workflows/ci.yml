@@ -28,11 +28,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Compile application
-        run: python -m py_compile image_cleaner.py
+      - name: Compile application and tests
+        run: |
+          python -m py_compile image_cleaner.py
+          python -m py_compile tests/test_file_operations.py
 
       - name: Verify media dependencies
         run: python -c "import cv2; from PIL import Image; print('dependencies ok')"
 
       - name: Import application module
         run: python -c "import image_cleaner; print('application import ok')"
+
+      - name: Run file-operation unit tests
+        run: python -m unittest discover -s tests -v
