@@ -33,3 +33,6 @@ jobs:
 
       - name: Verify media dependencies
         run: python -c "import cv2; from PIL import Image; print('dependencies ok')"
+
+      - name: Import application module
+        run: python -c "import image_cleaner; print('application import ok')"
