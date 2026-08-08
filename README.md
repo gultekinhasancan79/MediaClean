@@ -101,12 +101,32 @@ python image_cleaner.py
 
 ## Dependencies
 
-- **Python 3.x**
-- **Pillow** — image loading and resizing
-- **OpenCV (`opencv-python`)** — optional video thumbnail and duration support
+The media-processing dependencies are pinned to the versions exercised by CI:
+
+- **Pillow 10.4.0** — image loading and resizing
+- **OpenCV 4.14.0.94 (`opencv-python`)** — video thumbnail and duration support
 - **Tkinter** — desktop interface, included with most standard Python installations on Windows
 
-If OpenCV is unavailable, MediaClean continues to work with images only.
+CI currently runs on Python 3.12. If OpenCV is unavailable in a manual installation, MediaClean can still operate on image formats only.
+
+## Testing
+
+MediaClean includes dependency-free `unittest` coverage for the file-safety behavior that matters most during cleanup:
+
+- moving the selected file into `_trash`,
+- preserving undo metadata,
+- generating a conflict-safe destination instead of overwriting an existing trashed file,
+- and restoring the most recently trashed file back to its original location.
+
+The tests exercise the production `_move_to_trash` and `_undo_trash` methods without opening a Tk window.
+
+Run them locally with:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+GitHub Actions also installs the pinned dependencies, compiles the application and tests, verifies Pillow/OpenCV imports, imports the application module, and runs the file-operation test suite.
 
 ## Technical Notes
 
@@ -122,7 +142,7 @@ The main application state tracks:
 
 ## Current Scope
 
-MediaClean currently focuses on a fast single-folder desktop workflow. Potential future improvements include persistent undo history, recursive folder scanning, configurable keyboard bindings, packaging as a standalone executable, and richer video previews.
+MediaClean currently focuses on a fast single-folder desktop workflow. Potential future improvements include persistent undo history, recursive folder scanning, configurable keyboard bindings, packaging as a standalone executable, richer video previews, and broader image/video fixture coverage.
 
 ## License
 
