@@ -5,6 +5,7 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/gultekinhasancan79/MediaClean/actions/workflows/ci.yml"><img src="https://github.com/gultekinhasancan79/MediaClean/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <img src="https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/Tkinter-Desktop%20UI-4B8BBE" alt="Tkinter">
   <img src="https://img.shields.io/badge/Pillow-Image%20Processing-6C5CE7" alt="Pillow">
